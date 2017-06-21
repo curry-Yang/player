@@ -1,0 +1,256 @@
+/*很多样式需要先定义好，便于开发*/
+p, h1, h2, h3, h4, h5, div, a {
+	/*font-family: sans-serif;*/
+	color: #000;
+	font: 14px/20px Helvetica,sans-serif,arial;
+	margin: 0;
+}
+
+ul, li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+
+/*定义完成*/
+html, body {
+	background-color: #fff;
+	margin: 0;
+	/*css3中有 vw 和 vh
+		vw：将视口宽度分100份，width 100vw 代表铺满视口宽度（高度同理）*/
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	/*距离各个边都是0*/
+	overflow: hidden;
+}
+
+.content-wrap {
+	width: 100%;
+	height: 100%;
+	max-width: 600px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	margin: 0 auto;
+}
+
+.content-wrap .content {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .6);
+	padding-top: 60px;
+	box-sizing: border-box;/*总高度和宽度都不变， 加上padding*/
+}
+
+
+/*封面图片*/
+/*要实现一个跟随宽度改变的样式*/
+.song-img {
+	width: 50%;
+	height: 0;
+	padding-bottom: 50%;
+	position: relative;
+	background-color: #ccc;
+	margin: 0 auto;
+}
+
+.song-img .img-wrap {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+}
+
+.song-img .img-wrap img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+
+/*歌曲信息样式*/
+.song-info {
+	height: 126px;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.song-info h1{
+	font-size: 24px;
+	color: rgba(255,255,255,.86);
+	line-height: 36px;
+	margin-bottom: 8px;
+	/*截断样式*/
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.song-info h3{
+	color: rgba(255, 255, 255, .6);
+	margin-bottom: 12px;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+
+/*进度条*/
+.play-area {
+	height:40px;
+	width: 100%;
+	line-height: 40px;
+	display: flex;
+	margin-top: 10px;
+}
+
+
+
+/*时间样式*/
+.play-area .cur-time,
+.play-area .all-time {
+	display: block;
+	width: 60px;
+	text-align: center;
+	color: rgba(255, 255, 255, .86);
+}
+
+
+/*进度条样式*/
+.play-area .pro-wrap {
+	flex: 1;
+	position: relative;
+	overflow: hidden;
+	padding-left: 5px;
+}
+
+
+/*背景进度条*/
+.play-area .pro-bottom {
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	top: 20px;
+	background-color: rgba(255, 255, 255, .6);
+}
+
+
+/*前景进度条*/
+.play-area .pro-top {
+	height: 1px;
+	background-color: #fff;
+	z-index: 100;
+	transform:translateX(-100%);
+}
+
+/*前景进度条小圆点 鼠标不容易点到小圆点所以设置无色大一点的父级*/
+.play-area .pro-top .slide-point {
+	/*background: #fff;*/
+	position: absolute;
+	width: 21px;
+	height: 21px;
+	right: -10px;
+	top: -10px;
+}
+
+
+/*伪元素画圆点*/  
+.play-area .pro-top .slide-point::after {
+	content: '';
+	position: absolute;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background-color: #fff;
+	top: 8px;
+	left: 6px;
+}
+
+/*按钮区域样式*/
+.play-control {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: rgba(0, 0, 0, .5);
+	display: flex;
+}
+
+/*每个按钮区域样式*/
+.play-control .btn-wrap {
+	flex:1;
+	/*flex居中*/
+	display: flex;
+	align-items:center;
+	justify-content:center;
+}
+
+
+/*每个按钮icon样式*/
+.play-control .btn-wrap span {
+	display: block;
+	width: 20px;
+	height: 20px;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+
+/*为每个按钮定义背景图片*/
+.play-control .btn-wrap .like-btn {
+	background-image: url(../img/icon-like.png?__inline);
+}
+
+.play-control .btn-wrap .like-btn.disabled {
+	background-image: url(../img/icon-like-solid.png?__inline);
+}
+
+.play-control .btn-wrap .pre-btn {
+	background-image: url(../img/icon-prev.png?__inline);
+}
+
+.play-control .btn-wrap .play-btn {
+	background-image: url(../img/icon-play.png?__inline);
+}
+
+.play-control .btn-wrap .play-btn.playing {
+	background-image: url(../img/icon-pause.png?__inline);
+}
+
+.play-control .btn-wrap .next-btn {
+	background-image: url(../img/icon-next.png?__inline);
+}
+
+.play-control .btn-wrap .list-btn {
+	background-image: url(../img/icon-list.png?__inline);
+}
+
+
+/*列表样式*/
+.play-list {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: #fff;
+	transition: transform 0.5s ease-in;
+	transform: translateY(100%);
+}
+
+.play-list .list-head, .play-list .close-btn {
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 16px;
+}
+
+
+
+.play-list li {
+	height: 20px;
+	padding: 10px 10px;
+}
